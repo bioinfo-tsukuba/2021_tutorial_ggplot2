@@ -26,3 +26,4 @@
   - `egg` https://cran.r-project.org/web/packages/egg/vignettes/Ecosystem.html
   - `patchwork` https://patchwork.data-imaginist.com/articles/guides/assembly.html
   - `ggpubr` https://rpkgs.datanovia.com/ggpubr/index.html
+  - `ggrepel` https://ggrepel.slowkow.com/articles/examples.html

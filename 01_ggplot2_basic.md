@@ -124,6 +124,47 @@ ggplot(diamonds, aes(x=price)) +
 ![](01_ggplot2_basic_files/figure-html/unnamed-chunk-5-1.png)<!-- -->
 
 
+### Grouping samples
+
+
+```r
+ggplot(diamonds, aes(x=price, fill=clarity)) +
+  geom_histogram()
+```
+
+```
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+```
+
+![](01_ggplot2_basic_files/figure-html/unnamed-chunk-6-1.png)<!-- -->
+
+### Grouping samples (independent histogram)
+
+
+```r
+ggplot(diamonds, aes(x=price, fill=clarity)) +
+  geom_histogram(position = "identity", alpha = 0.8)
+```
+
+```
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+```
+
+![](01_ggplot2_basic_files/figure-html/unnamed-chunk-7-1.png)<!-- -->
+
+### Grouping samples (dodged histogram)
+
+
+```r
+ggplot(diamonds, aes(x=price, fill=clarity)) +
+  geom_histogram(position = "dodge", alpha = 0.8)
+```
+
+```
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+```
+
+![](01_ggplot2_basic_files/figure-html/unnamed-chunk-8-1.png)<!-- -->
 
 ## `geom_density()`: density plot
 
@@ -133,7 +174,7 @@ ggplot(diamonds, aes(x=price)) +
   geom_density()
 ```
 
-![](01_ggplot2_basic_files/figure-html/unnamed-chunk-6-1.png)<!-- -->
+![](01_ggplot2_basic_files/figure-html/unnamed-chunk-9-1.png)<!-- -->
 
 # With `x` and `y` in `aes()` in `ggplot()`
 
@@ -142,7 +183,7 @@ ggplot(diamonds, aes(x=price)) +
 ggplot(diamonds, aes(x=table, y=price))
 ```
 
-![](01_ggplot2_basic_files/figure-html/unnamed-chunk-7-1.png)<!-- -->
+![](01_ggplot2_basic_files/figure-html/unnamed-chunk-10-1.png)<!-- -->
 
 ## `geom_point`: Scatter plot
 
@@ -152,7 +193,7 @@ ggplot(diamonds, aes(x=table, y=price)) +
   geom_point()
 ```
 
-![](01_ggplot2_basic_files/figure-html/unnamed-chunk-8-1.png)<!-- -->
+![](01_ggplot2_basic_files/figure-html/unnamed-chunk-11-1.png)<!-- -->
 
 ### Change size of points in scatter plot
 
@@ -162,7 +203,7 @@ ggplot(diamonds, aes(x=table, y=price)) +
   geom_point(size = 0.5)
 ```
 
-![](01_ggplot2_basic_files/figure-html/unnamed-chunk-9-1.png)<!-- -->
+![](01_ggplot2_basic_files/figure-html/unnamed-chunk-12-1.png)<!-- -->
 
 ## `geom_smooth`: Draw smoothed line
 
@@ -176,7 +217,7 @@ ggplot(diamonds, aes(x=depth, y=price)) +
 ## `geom_smooth()` using method = 'gam' and formula 'y ~ s(x, bs = "cs")'
 ```
 
-![](01_ggplot2_basic_files/figure-html/unnamed-chunk-10-1.png)<!-- -->
+![](01_ggplot2_basic_files/figure-html/unnamed-chunk-13-1.png)<!-- -->
 
 ### `geom_point()` + `geom_smooth`
 
@@ -191,7 +232,7 @@ ggplot(diamonds, aes(x=table, y=price)) +
 ## `geom_smooth()` using method = 'gam' and formula 'y ~ s(x, bs = "cs")'
 ```
 
-![](01_ggplot2_basic_files/figure-html/unnamed-chunk-11-1.png)<!-- -->
+![](01_ggplot2_basic_files/figure-html/unnamed-chunk-14-1.png)<!-- -->
 
 
 ## `geom_bin2d()`
@@ -202,7 +243,7 @@ ggplot(diamonds, aes(x=table, y=price)) +
   geom_bin2d()
 ```
 
-![](01_ggplot2_basic_files/figure-html/unnamed-chunk-12-1.png)<!-- -->
+![](01_ggplot2_basic_files/figure-html/unnamed-chunk-15-1.png)<!-- -->
 
 ## `geom_boxplot()`: box plot
 
@@ -212,7 +253,7 @@ ggplot(diamonds, aes(x=clarity, y=price)) +
   geom_boxplot()
 ```
 
-![](01_ggplot2_basic_files/figure-html/unnamed-chunk-13-1.png)<!-- -->
+![](01_ggplot2_basic_files/figure-html/unnamed-chunk-16-1.png)<!-- -->
 
 ## `geom_violin()`: violin plot
 
@@ -222,7 +263,7 @@ ggplot(diamonds, aes(x=clarity, y=price)) +
   geom_violin()
 ```
 
-![](01_ggplot2_basic_files/figure-html/unnamed-chunk-14-1.png)<!-- -->
+![](01_ggplot2_basic_files/figure-html/unnamed-chunk-17-1.png)<!-- -->
 
 
 # sessionInfo()
@@ -255,17 +296,17 @@ sessionInfo()
 ## loaded via a namespace (and not attached):
 ##  [1] tidyselect_1.1.0  xfun_0.19         lattice_0.20-41   splines_3.6.1    
 ##  [5] haven_2.3.1       colorspace_2.0-0  vctrs_0.3.6       generics_0.1.0   
-##  [9] htmltools_0.5.0   mgcv_1.8-33       yaml_2.2.1        utf8_1.1.4       
-## [13] rlang_0.4.9       pillar_1.4.7      glue_1.4.2        withr_2.3.0      
-## [17] DBI_1.1.0         dbplyr_2.0.0      modelr_0.1.8      readxl_1.3.1     
-## [21] lifecycle_0.2.0   munsell_0.5.0     gtable_0.3.0      cellranger_1.1.0 
-## [25] rvest_0.3.6       evaluate_0.14     labeling_0.4.2    knitr_1.30       
-## [29] fansi_0.4.1       broom_0.7.3       Rcpp_1.0.5        scales_1.1.1     
-## [33] backports_1.2.1   jsonlite_1.7.2    farver_2.0.3      fs_1.5.0         
-## [37] hms_0.5.3         digest_0.6.27     stringi_1.5.3     grid_3.6.1       
-## [41] cli_2.2.0         tools_3.6.1       magrittr_2.0.1    crayon_1.3.4     
-## [45] pkgconfig_2.0.3   Matrix_1.2-18     ellipsis_0.3.1    xml2_1.3.2       
-## [49] reprex_0.3.0      lubridate_1.7.9.2 assertthat_0.2.1  rmarkdown_2.6    
-## [53] httr_1.4.2        rstudioapi_0.13   R6_2.5.0          nlme_3.1-151     
-## [57] compiler_3.6.1
+##  [9] viridisLite_0.3.0 htmltools_0.5.0   mgcv_1.8-33       yaml_2.2.1       
+## [13] utf8_1.1.4        rlang_0.4.9       pillar_1.4.7      glue_1.4.2       
+## [17] withr_2.3.0       DBI_1.1.0         dbplyr_2.0.0      modelr_0.1.8     
+## [21] readxl_1.3.1      lifecycle_0.2.0   munsell_0.5.0     gtable_0.3.0     
+## [25] cellranger_1.1.0  rvest_0.3.6       evaluate_0.14     labeling_0.4.2   
+## [29] knitr_1.30        fansi_0.4.1       broom_0.7.3       Rcpp_1.0.5       
+## [33] scales_1.1.1      backports_1.2.1   jsonlite_1.7.2    farver_2.0.3     
+## [37] fs_1.5.0          hms_0.5.3         digest_0.6.27     stringi_1.5.3    
+## [41] grid_3.6.1        cli_2.2.0         tools_3.6.1       magrittr_2.0.1   
+## [45] crayon_1.3.4      pkgconfig_2.0.3   Matrix_1.2-18     ellipsis_0.3.1   
+## [49] xml2_1.3.2        reprex_0.3.0      lubridate_1.7.9.2 assertthat_0.2.1 
+## [53] rmarkdown_2.6     httr_1.4.2        rstudioapi_0.13   R6_2.5.0         
+## [57] nlme_3.1-151      compiler_3.6.1
 ```

@@ -51,6 +51,26 @@ ggplot(diamonds, aes(x=price)) +
 ```
 
 
+### Grouping samples
+
+```{r}
+ggplot(diamonds, aes(x=price, fill=clarity)) +
+  geom_histogram()
+```
+
+### Grouping samples (independent histogram)
+
+```{r}
+ggplot(diamonds, aes(x=price, fill=clarity)) +
+  geom_histogram(position = "identity", alpha = 0.8)
+```
+
+### Grouping samples (dodged histogram)
+
+```{r}
+ggplot(diamonds, aes(x=price, fill=clarity)) +
+  geom_histogram(position = "dodge", alpha = 0.8)
+```
 
 ## `geom_density()`: density plot
 

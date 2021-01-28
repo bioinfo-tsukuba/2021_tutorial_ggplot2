@@ -18,6 +18,7 @@
 
 ## Futher reading
 
+- ggplot2 reference https://ggplot2.tidyverse.org/reference/index.html
 - cowplot https://wilkelab.org/cowplot/articles/introduction.html
 - Other ggplot2-related ecosystems
   - `GGally` https://ggobi.github.io/ggally/

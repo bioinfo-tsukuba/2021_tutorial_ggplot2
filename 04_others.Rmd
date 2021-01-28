@@ -1,0 +1,133 @@
+---
+title: "Other important functionalities"
+output: 
+  html_document: 
+    keep_md: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Load `ggplot2` and `cowplot` libraries as a part of `tidyverse`
+
+```{r cars}
+library(tidyverse)
+library(cowplot)
+```
+
+## Example data table
+```{r}
+mpg %>% head
+```
+
+
+
+# `labs()`
+
+```{r}
+p <- ggplot(mpg, aes(displ, cty)) +
+  geom_point() +
+  theme_minimal_grid(12)
+
+p
+```
+
+## Title, x- and y-axis labels
+
+```{r}
+p + labs(
+  title = "Engine displacement and cylinder number ", 
+  x = "engine displacement, in litres",
+  y = "number of cylinders"
+  )
+```
+
+## Caption
+
+```{r}
+p + labs(
+  title = "Engine displacement and cylinder number ", 
+  x = "engine displacement, in litres",
+  y = "number of cylinders",
+  caption = "This dataset contains a subset of the fuel economy data that the EPA makes available on http://fueleconomy.gov.
+It contains only models which had a new release every year between 1999 and 2008
+- this was used as a proxy for the popularity of the car."
+  )
+```
+
+# `theme()`
+
+See https://ggplot2.tidyverse.org/reference/theme.html
+
+## Modify caption text
+
+```{r}
+p + labs(
+  title = "Engine displacement and cylinder number ", 
+  x = "engine displacement, in litres",
+  y = "number of cylinders",
+  caption = "This dataset contains a subset of the fuel economy data that the EPA makes available on http://fueleconomy.gov.
+It contains only models which had a new release every year between 1999 and 2008
+- this was used as a proxy for the popularity of the car."
+  ) +
+  theme(plot.caption = element_text(hjust=0, size=8))
+```
+
+
+## Modify legend 
+
+```{r}
+p <- ggplot(mpg, aes(displ, cty, color=manufacturer)) +
+  geom_point() +
+  theme_minimal_grid(12)
+
+p
+```
+
+```{r}
+p + theme(legend.position = "bottom")
+```
+
+# scale
+
+```{r}
+p
+```
+
+## scale axis into log10
+
+```{r}
+p + scale_x_log10()
+```
+
+```{r}
+p + scale_y_log10()
+```
+
+
+# `ggsave()`
+
+## PDF
+
+```{r}
+ggsave("plot.pdf", plot=p)
+```
+
+## SVG
+
+```{r}
+ggsave("plot.svg", plot=p)
+```
+
+## PNG
+
+```{r}
+ggsave("plot.png", plot=p)
+```
+
+# sessionInfo()
+
+```{r}
+sessionInfo()
+```

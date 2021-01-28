@@ -1,0 +1,124 @@
+---
+title: "ggplot basic"
+output: 
+  html_document: 
+    keep_md: yes
+    number_sections: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# ggplot basic
+
+## Load `ggplot2` library as a part of `tidyverse`
+```{r cars}
+library(tidyverse)
+```
+
+## Example data table
+```{r}
+diamonds %>% head
+```
+
+## `ggplot` function
+
+- First argument: data frame
+- Second argument: `aes()`
+
+```{r}
+ggplot(diamonds, aes())
+```
+
+# With `x` in `aes()` in `ggplot()`
+
+```{r}
+ggplot(diamonds, aes(x=price))
+```
+
+## `geom_hist()`: histogram
+
+```{r}
+ggplot(diamonds, aes(x=price)) + geom_histogram()
+```
+
+### new line can be inserted after `+`
+
+```{r}
+ggplot(diamonds, aes(x=price)) +
+  geom_histogram()
+```
+
+
+
+## `geom_density()`: density plot
+
+```{r}
+ggplot(diamonds, aes(x=price)) +
+  geom_density()
+```
+
+# With `x` and `y` in `aes()` in `ggplot()`
+
+```{r}
+ggplot(diamonds, aes(x=table, y=price))
+```
+
+## `geom_point`: Scatter plot
+
+```{r}
+ggplot(diamonds, aes(x=table, y=price)) + 
+  geom_point()
+```
+
+### Change size of points in scatter plot
+
+```{r}
+ggplot(diamonds, aes(x=table, y=price)) + 
+  geom_point(size = 0.5)
+```
+
+## `geom_smooth`: Draw smoothed line
+
+```{r}
+ggplot(diamonds, aes(x=depth, y=price)) + 
+  geom_smooth()
+```
+
+### `geom_point()` + `geom_smooth`
+
+```{r}
+ggplot(diamonds, aes(x=table, y=price)) + 
+  geom_point(size = 0.5) +
+  geom_smooth()
+```
+
+
+## `geom_bin2d()`
+
+```{r}
+ggplot(diamonds, aes(x=table, y=price)) + 
+  geom_bin2d()
+```
+
+## `geom_boxplot()`: box plot
+
+```{r}
+ggplot(diamonds, aes(x=clarity, y=price)) + 
+  geom_boxplot()
+```
+
+## `geom_violin()`: violin plot
+
+```{r}
+ggplot(diamonds, aes(x=clarity, y=price)) + 
+  geom_violin()
+```
+
+
+# sessionInfo()
+
+```{r}
+sessionInfo()
+```

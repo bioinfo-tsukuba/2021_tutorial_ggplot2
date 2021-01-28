@@ -1,0 +1,175 @@
+---
+title: "plot_grid() in cowplot"
+output: 
+  html_document: 
+    keep_md: yes
+    number_sections: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Basics
+
+## Load `ggplot2` and `cowplot` libraries as a part of `tidyverse`
+```{r cars}
+library(tidyverse)
+library(cowplot)
+```
+
+## Example data table
+```{r}
+iris %>% head
+```
+
+# example plot
+```{r}
+ggplot(iris, aes(x = Species, y = Sepal.Length)) +
+  geom_boxplot() + theme_bw() +
+  theme(axis.text.x = element_text(size = 14, angle = 90, vjust = 0.5))
+```
+
+## plot can be assigned to an object
+
+```{r}
+p1 <- ggplot(iris, aes(x = Species, y = Sepal.Length)) +
+  geom_boxplot() + theme_bw() +
+  theme(axis.text.x = element_text(size = 14, angle = 90, vjust = 0.5))
+```
+
+# Example plot 2
+
+```{r}
+ggplot(iris, aes(x = Sepal.Length, fill = Species)) +
+  geom_density(alpha = 0.7) + theme_bw() +
+  theme(legend.position = c(0.8, 0.8))
+```
+
+## plot can be assigned to an object
+
+```{r}
+p2 <- ggplot(iris, aes(x = Sepal.Length, fill = Species)) +
+  geom_density(alpha = 0.7) + theme_bw() +
+  theme(legend.position = c(0.8, 0.8))
+```
+
+# `plot_grid()`
+
+```{r}
+plot_grid(p1, p2)
+```
+
+## `labels` option in  `plot_grid()`
+
+```{r}
+plot_grid(p1, p2, labels = "AUTO")
+```
+
+```{r}
+plot_grid(p1, p2, labels = "auto")
+```
+
+```{r}
+plot_grid(p1, p2, labels = c("A1", "A2"))
+```
+
+
+## `align` option in `plot_grid()`
+
+```{r}
+plot_grid(p1, p2, labels = "AUTO")
+```
+
+```{r}
+plot_grid(p1, p2, labels = "AUTO", align = "h")
+```
+
+## label settings
+
+```{r}
+plot_grid(p1, p2, labels = "AUTO", align = "h",
+          label_size = 10,
+          label_fontfamily = "serif",
+          label_fontface = "plain",
+          label_colour = "blue")
+```
+
+## `ncol` option
+
+```{r}
+plot_grid(p1, p2, labels = "AUTO", ncol = 1)
+```
+
+## `rel_widths` option
+
+```{r}
+plot_grid(p1, p2, labels = "AUTO", rel_widths = c(1, 2))
+```
+
+
+## Complex layout
+
+```{r}
+plot_grid(
+  p1, NULL, NULL, p2,
+  labels = "AUTO", ncol = 2
+)
+```
+
+# Nested plot grids
+
+```{r}
+bottom_row <- plot_grid(p1, p2, labels = c('B', 'C'), label_size = 12)
+p3 <- ggplot(mtcars, aes(x = qsec, y = disp)) + geom_point() + facet_wrap(~gear)
+
+plot_grid(p3, bottom_row, labels = c('A', ''), label_size = 12, ncol = 1)
+```
+
+## `align_plots()`
+
+```{r}
+plots <- align_plots(p3, p1, align = 'v', axis = 'l')
+# then build the bottom row
+bottom_row <- plot_grid(plots[[2]], p2, labels = c('B', 'C'), label_size = 12)
+
+# then combine with the top row for final plot
+plot_grid(plots[[1]], bottom_row, labels = c('A', ''), label_size = 12, ncol = 1)
+```
+
+
+# Joint plot titles
+
+```{r}
+# now add the title
+plot_row <- plot_grid(p1, p2)
+
+title <- ggdraw() + 
+  draw_label(
+    "Miles per gallon decline with displacement and horsepower",
+    fontface = 'bold',
+    x = 0,
+    hjust = 0
+  ) +
+  theme(
+    # add margin on the left of the drawing canvas,
+    # so title is aligned with left edge of first plot
+    plot.margin = margin(0, 0, 0, 7)
+  )
+plot_grid(
+  title, plot_row,
+  ncol = 1,
+  # rel_heights values control vertical title margins
+  rel_heights = c(0.1, 1)
+)
+```
+
+# sessionInfo()
+
+```{r}
+sessionInfo()
+```
+
+# References
+
+- https://wilkelab.org/cowplot/articles/plot_grid.html

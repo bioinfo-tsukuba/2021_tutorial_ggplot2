@@ -1,0 +1,140 @@
+---
+title: "ggplot facet"
+output: 
+  html_document: 
+    keep_md: yes
+    number_sections: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# ggplot basic
+
+## Load `ggplot2` library as a part of `tidyverse`
+```{r cars}
+library(tidyverse)
+```
+
+## Example data table
+```{r}
+diamonds %>% head
+```
+
+## `ggplot` function
+
+- First argument: data frame
+- Second argument: `aes()`
+
+```{r}
+ggplot(diamonds, aes())
+```
+
+# With `x` in `aes()` in `ggplot()`
+
+## `geom_hist()`: histogram
+
+```{r}
+ggplot(diamonds, aes(x=price)) +
+  geom_histogram()
+```
+
+## `+ facet_wrap()`
+
+```{r}
+ggplot(diamonds, aes(x=price)) +
+  geom_histogram() +
+  facet_wrap(~color)
+```
+
+
+```{r}
+ggplot(diamonds, aes(x=price)) +
+  geom_histogram() +
+  facet_wrap(~cut)
+```
+
+## `scales` option in `facet_wrap()`
+
+
+```{r}
+ggplot(diamonds, aes(x=price)) +
+  geom_histogram() +
+  facet_wrap(~cut, scales = "free_y")
+```
+
+## `+ facet_grid()`
+
+```{r}
+ggplot(diamonds, aes(x=price)) +
+  geom_histogram() +
+  facet_grid(cut~color)
+```
+
+## `scales` option in `facet_grid()`
+
+```{r}
+ggplot(diamonds, aes(x=price)) +
+  geom_histogram() +
+  facet_grid(cut~color, scales = "free_y")
+```
+
+## `geom_density()` + `facet_wrap()`
+
+You can try!
+
+
+# With `x` and `y` in `aes()` in `ggplot()`
+
+```{r}
+ggplot(diamonds, aes(x=table, y=price))
+```
+
+## `geom_point`: Scatter plot
+
+```{r}
+ggplot(diamonds, aes(x=table, y=price)) + 
+  geom_point(size = 0.5)
+```
+
+## + `facet_wrap()`
+
+```{r}
+ggplot(diamonds, aes(x=table, y=price)) + 
+  geom_point(size = 0.5) + 
+  facet_wrap(~cut)
+```
+
+
+## `geom_point()` + `geom_smooth` + `facet_wrap()`
+
+```{r}
+ggplot(diamonds, aes(x=table, y=price)) + 
+  geom_point(size = 0.5) +
+  geom_smooth() +
+  facet_wrap(~cut)
+```
+
+
+## `geom_boxplot()`: box plot
+
+```{r}
+ggplot(diamonds, aes(x=clarity, y=price)) + 
+  geom_boxplot()
+```
+
+## + `facet_wrap()`
+
+```{r}
+ggplot(diamonds, aes(x=clarity, y=price)) + 
+  geom_boxplot() + 
+  facet_wrap(~color)
+```
+
+
+# sessionInfo()
+
+```{r}
+sessionInfo()
+```

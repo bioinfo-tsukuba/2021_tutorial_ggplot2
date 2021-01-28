@@ -15,6 +15,7 @@
 1. [ggplot2 basics](01_ggplot2_basic.md)
 1. [Faceting](02_facet.md)
 1. [Align data using `plot_grid()`](03_plot_grid.md)
+1. [Other fuction](04_others.md)
 
 ## Futher reading
 
